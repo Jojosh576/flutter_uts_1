@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'registScreen.dart';
 
-class loginScreen extends StatelessWidget {  // Ganti dari loginScreen ke loginScreen
+class loginScreen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -12,31 +12,31 @@ class loginScreen extends StatelessWidget {  // Ganti dari loginScreen ke loginS
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height, // Adjust the container height to screen size
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/image/redbackground.jpg'), // Background image
-                fit: BoxFit.cover, // Adjust how the image fits the background
+                image: AssetImage('assets/image/redbackground.jpg'),
+                fit: BoxFit.cover, 
               ),
             ),
-            child: Center( // Menambahkan Center agar login box berada di tengah
+            child: Center(
               child: Container(
                 margin: EdgeInsets.symmetric(vertical: 34, horizontal: 24),
-                padding: EdgeInsets.all(25), // Padding untuk konten di dalam box
+                padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
-                  color: Colors.white, // Background putih
-                  borderRadius: BorderRadius.circular(32), // Border radius sebesar 32
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(32),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26, // Shadow dengan sedikit transparansi
-                      blurRadius: 10, // Lebar blur shadow
-                      offset: Offset(0, 4), // Posisi shadow
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
                     ),
                   ],
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min, // Sesuaikan ukuran container dengan isi
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(height: 50),
                     _header(context),
@@ -65,7 +65,10 @@ class loginScreen extends StatelessWidget {  // Ganti dari loginScreen ke loginS
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 24.0),
-        child: Text("Enter your credentials to login"),
+        child: Text(
+          "Silahkan masukkan Username dan Password Anda untuk masuk.",
+          textAlign: TextAlign.center,
+          ),
         ),
       ],
     );
@@ -109,7 +112,7 @@ class loginScreen extends StatelessWidget {  // Ganti dari loginScreen ke loginS
             String username = usernameController.text;
             String password = passwordController.text;
 
-            if (username == 'raja' && password == 'raja') {
+            if (username == '1234' && password == '1234') {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Login berhasil!"),

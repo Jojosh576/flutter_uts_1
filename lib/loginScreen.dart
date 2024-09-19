@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uts_1/home/home.dart';
 import 'registScreen.dart';
 
 class loginScreen extends StatelessWidget {
@@ -13,10 +14,10 @@ class loginScreen extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/image/redbackground.jpg'),
-                fit: BoxFit.cover, 
+                fit: BoxFit.cover,
               ),
             ),
             child: Center(
@@ -54,20 +55,20 @@ class loginScreen extends StatelessWidget {
   }
 
   _header(context) {
-    return Column(
+    return const Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 16.0, top: 1.0),
-        child: Text(
-          "Login",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          padding: EdgeInsets.only(bottom: 16.0, top: 1.0),
+          child: Text(
+            "Login",
+            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 24.0),
-        child: Text(
-          "Silahkan masukkan Username dan Password Anda untuk masuk.",
-          textAlign: TextAlign.center,
+          padding: EdgeInsets.only(bottom: 24.0),
+          child: Text(
+            "Silahkan masukkan Username dan Password Anda untuk masuk.",
+            textAlign: TextAlign.center,
           ),
         ),
       ],
@@ -113,11 +114,8 @@ class loginScreen extends StatelessWidget {
             String password = passwordController.text;
 
             if (username == '1234' && password == '1234') {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Login berhasil!"),
-                ),
-              );
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const Home()));
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

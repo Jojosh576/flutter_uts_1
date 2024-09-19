@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LingTan E-wallet',
+      title: 'LingPay E-wallet',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 255, 2, 2),
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const Home(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -90,7 +90,7 @@ class SplashScreen extends StatelessWidget {
                           backgroundColor:
                               const Color.fromARGB(255, 255, 255, 255),
                           padding: const EdgeInsets.symmetric(
-                              vertical: 21, horizontal: 155)),
+                              vertical: 21, horizontal: 135)),
                       child: const Text(
                         'Mulai',
                         style: TextStyle(

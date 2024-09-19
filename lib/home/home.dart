@@ -63,6 +63,7 @@ class HomeScreenContent extends StatelessWidget {
     final controller = PageController();
 
     return SafeArea(
+      child: SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -166,7 +167,7 @@ class HomeScreenContent extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    'Transfer',
+                    'Kirim',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -206,7 +207,7 @@ class HomeScreenContent extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    'Topup',
+                    'Isi Ulang',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -246,7 +247,7 @@ class HomeScreenContent extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    'Requset',
+                    'Minta',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -370,7 +371,7 @@ class HomeScreenContent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'History',
+                                  'Riwayat',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -380,7 +381,7 @@ class HomeScreenContent extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  'Lihat History Transaksi',
+                                  'Lihat Riwayat Transaksi',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 ),
@@ -391,15 +392,19 @@ class HomeScreenContent extends StatelessWidget {
                         const Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                )
               ],
             ),
           ),
         ],
+      ),
       ),
     );
   }

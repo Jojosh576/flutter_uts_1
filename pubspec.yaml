@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   smooth_page_indicator:
+  curved_navigation_bar: ^1.0.6
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,12 @@ flutter:
     - assets/image/redbackground.jpg
     - assets/image/lingpayword.png
     - assets/image/lingpay2.png
+
+    - lib/icons/fund.png
+    - lib/icons/history.png
+    - lib/icons/bill.png
+    - lib/icons/topup.png
+    - lib/icons/request.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

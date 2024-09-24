@@ -1,48 +1,39 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class TopupScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.lightBlue[50], // Background color for all screens
-      ),
-      debugShowCheckedModeBanner: false, // Hapus banner debug
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatefulWidget {
-  @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<TopupScreen> {
   // State untuk menyimpan nilai input pengguna
   String _selectedMethod = 'Bank Transfer'; // Default method
   String _nominal = '';
-  String _paymentInfo = ''; // Untuk menyimpan informasi kartu kredit atau nomor HP
+  String _paymentInfo =
+      ''; // Untuk menyimpan informasi kartu kredit atau nomor HP
 
   // Dummy nomor virtual account
   final String _dummyVirtualAccount = '1234567890';
 
   // Daftar metode pembayaran
-  final List<String> _paymentMethods = ['Bank Transfer', 'Credit Card', 'Pulsa'];
+  final List<String> _paymentMethods = [
+    'Bank Transfer',
+    'Credit Card',
+    'Pulsa'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        backgroundColor: const Color.fromARGB(255, 161, 42, 34),
+        title: Text(
+          'Topup',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      backgroundColor: Colors.lightBlue[50], // Background color for this screen
+      backgroundColor: Colors.grey[300], // Background color for this screen
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -62,7 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   _paymentInfo = ''; // Reset info pembayaran
                 });
               },
-              items: _paymentMethods.map<DropdownMenuItem<String>>((String method) {
+              items: _paymentMethods
+                  .map<DropdownMenuItem<String>>((String method) {
                 return DropdownMenuItem<String>(
                   value: method,
                   child: Text(method),
@@ -157,7 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Harap masukkan semua informasi yang diperlukan')),
+                      SnackBar(
+                          content: Text(
+                              'Harap masukkan semua informasi yang diperlukan')),
                     );
                   }
                 },

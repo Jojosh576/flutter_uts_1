@@ -65,6 +65,8 @@ flutter:
     - assets/image/redbackground.jpg
     - assets/image/lingpayword.png
     - assets/image/lingpay2.png
+    - assets/image/warning.png
+    - assets/image/qr_logo.png
 
     - lib/icons/fund.png
     - lib/icons/history.png

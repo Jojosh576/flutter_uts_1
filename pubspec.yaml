@@ -63,8 +63,8 @@ flutter:
   assets:
     - assets/image/lingpay.png
     - assets/image/redbackground.jpg
-    - assets/image/lingpayword.png
-    - assets/image/lingpay2.png
+    - assets/image/lingpayred.png
+    - assets/image/lingpayw.png
     - assets/image/warning.png
     - assets/image/qr_logo.png
 

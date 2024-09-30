@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uts_1/home/home.dart';
+import '../home/home.dart';
 import 'registScreen.dart';
 
 class loginScreen extends StatelessWidget {
@@ -14,15 +14,15 @@ class loginScreen extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/image/redbackground.jpg'),
-                fit: BoxFit.cover,
+                fit: BoxFit.cover, 
               ),
             ),
             child: Center(
               child: Container(
-                margin: EdgeInsets.symmetric(vertical: 34, horizontal: 24),
+                margin: EdgeInsets.symmetric(vertical: 54, horizontal: 24),
                 padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -39,7 +39,7 @@ class loginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 50),
+                    SizedBox(height: 8),
                     _header(context),
                     _inputField(context),
                     _forgotPassword(context),
@@ -55,20 +55,16 @@ class loginScreen extends StatelessWidget {
   }
 
   _header(context) {
-    return const Column(
+    return Column(
       children: [
+        Image.asset('assets/image/lingpayred.png', // Ganti dengan path gambar logo Anda
+        height: 120, // Sesuaikan tinggi logo
+      ),
         Padding(
-          padding: EdgeInsets.only(bottom: 16.0, top: 1.0),
-          child: Text(
-            "Login",
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(bottom: 24.0),
-          child: Text(
-            "Silahkan masukkan Username dan Password Anda untuk masuk.",
-            textAlign: TextAlign.center,
+          padding: const EdgeInsets.only(bottom: 24.0),
+        child: Text(
+          "Silahkan masukkan Username dan Password Anda untuk masuk.",
+          textAlign: TextAlign.center,
           ),
         ),
       ],
@@ -115,7 +111,7 @@ class loginScreen extends StatelessWidget {
 
             if (username == '1234' && password == '1234') {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const Home()));
+              MaterialPageRoute(builder: (context) => const Home()));
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

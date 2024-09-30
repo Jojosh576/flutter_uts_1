@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
+import 'confirmation_screen.dart'; // Pastikan untuk mengimpor file confirmation_screen.dart
 
 class TopupScreen extends StatefulWidget {
   @override
-  // ignore: library_private_types_in_public_api
-  _HomeScreenState createState() => _HomeScreenState();
+  _TopupScreenState createState() => _TopupScreenState();
 }
 
-class _HomeScreenState extends State<TopupScreen> {
-  // State untuk menyimpan nilai input pengguna
-  String _selectedMethod = 'Bank Transfer'; // Default method
+class _TopupScreenState extends State<TopupScreen> {
+  String _selectedMethod = 'Bank Transfer';
   String _nominal = '';
-  String _paymentInfo =
-      ''; // Untuk menyimpan informasi kartu kredit atau nomor HP
-
-  // Dummy nomor virtual account
+  String _paymentInfo = '';
   final String _dummyVirtualAccount = '1234567890';
-
-  // Daftar metode pembayaran
-  final List<String> _paymentMethods = [
-    'Bank Transfer',
-    'Credit Card',
-    'Pulsa'
-  ];
+  final List<String> _paymentMethods = ['Bank Transfer', 'Credit Card', 'Pulsa'];
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +23,12 @@ class _HomeScreenState extends State<TopupScreen> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      backgroundColor: Colors.grey[300], // Background color for this screen
+      backgroundColor: Colors.grey[300],
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Dropdown untuk memilih metode pembayaran
             DropdownButtonFormField<String>(
               decoration: InputDecoration(
                 labelText: 'Metode Pembayaran',
@@ -49,12 +38,11 @@ class _HomeScreenState extends State<TopupScreen> {
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedMethod = newValue!;
-                  _nominal = ''; // Reset nominal saat metode berubah
-                  _paymentInfo = ''; // Reset info pembayaran
+                  _nominal = '';
+                  _paymentInfo = '';
                 });
               },
-              items: _paymentMethods
-                  .map<DropdownMenuItem<String>>((String method) {
+              items: _paymentMethods.map<DropdownMenuItem<String>>((String method) {
                 return DropdownMenuItem<String>(
                   value: method,
                   child: Text(method),
@@ -63,16 +51,14 @@ class _HomeScreenState extends State<TopupScreen> {
             ),
             SizedBox(height: 20),
 
-            // Kondisional untuk input berdasarkan metode pembayaran yang dipilih
             if (_selectedMethod == 'Bank Transfer') ...[
-              // Tampilkan nomor virtual account dummy tanpa tombol
               Text(
                 'Nomor Virtual Account Anda:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
               Text(
-                _dummyVirtualAccount, // Nomor virtual account dummy
+                _dummyVirtualAccount,
                 style: TextStyle(fontSize: 24, color: Colors.blue),
               ),
             ] else if (_selectedMethod == 'Credit Card') ...[
@@ -89,7 +75,6 @@ class _HomeScreenState extends State<TopupScreen> {
                 },
               ),
               SizedBox(height: 20),
-              // Input untuk nominal pembayaran
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -116,7 +101,6 @@ class _HomeScreenState extends State<TopupScreen> {
                 },
               ),
               SizedBox(height: 20),
-              // Input untuk nominal pembayaran
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -132,11 +116,9 @@ class _HomeScreenState extends State<TopupScreen> {
             ],
             SizedBox(height: 20),
 
-            // Tombol hanya untuk metode selain Bank Transfer
             if (_selectedMethod != 'Bank Transfer')
               ElevatedButton(
                 onPressed: () {
-                  // Validasi input untuk Credit Card dan Pulsa
                   if (_nominal.isNotEmpty && _paymentInfo.isNotEmpty) {
                     Navigator.push(
                       context,
@@ -150,59 +132,13 @@ class _HomeScreenState extends State<TopupScreen> {
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                          content: Text(
-                              'Harap masukkan semua informasi yang diperlukan')),
+                        content: Text('Harap isi semua informasi yang diperlukan'),
+                      ),
                     );
                   }
                 },
                 child: Text('Proceed to Confirmation'),
               ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ConfirmationScreen extends StatelessWidget {
-  final String method;
-  final String nominal;
-
-  ConfirmationScreen({required this.method, required this.nominal});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Konfirmasi Pembayaran'),
-      ),
-      backgroundColor: Colors.lightBlue[50], // Background color for this screen
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Metode Pembayaran: $method',
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Nominal: Rp $nominal',
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(height: 32),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Top Up berhasil!')),
-                  );
-                  Navigator.popUntil(context, (route) => route.isFirst);
-                },
-                child: Text('Konfirmasi'),
-              ),
-            ),
           ],
         ),
       ),

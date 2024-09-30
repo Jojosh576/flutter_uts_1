@@ -1,95 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class ConfirmationScreen extends StatefulWidget {
+class ConfirmationScreen extends StatelessWidget {
   final String method;
   final String nominal;
 
   ConfirmationScreen({required this.method, required this.nominal});
 
-  @override
-  _ConfirmationScreenState createState() => _ConfirmationScreenState();
-}
-
-class _ConfirmationScreenState extends State<ConfirmationScreen> {
-  bool _isSuccessVisible = false; // State untuk mengatur visibilitas animasi
+  String formatNominal(String nominal) {
+    int amount = int.parse(nominal.replaceAll(RegExp(r'[^0-9]'), ''));
+    final formatter = NumberFormat("#,###", "id_ID");
+    return formatter.format(amount);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Konfirmasi Top Up'),
+        title: Text('Konfirmasi Top-up'),
+        backgroundColor: Color.fromARGB(255, 117, 0, 0),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Metode Pembayaran: ${widget.method}',
-              style: TextStyle(
-                fontSize: 18,
-              ),
+              'Metode Pembayaran: $method',
+              style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 16),
             Text(
-              'Nominal: Rp ${widget.nominal}',
-              style: TextStyle(
-                fontSize: 18,
-              ),
+              'Nominal: Rp ${formatNominal(nominal)}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 32),
-            
-            // Tombol Konfirmasi
+            Spacer(),
             Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _isSuccessVisible = true; // Tampilkan animasi saat diklik
-                  });
-
-                  Future.delayed(Duration(seconds: 2), () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Top Up berhasil!'),
+              child: GestureDetector(
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(Icons.check, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text("Top-up Berhasil"),
+                        ],
                       ),
-                    );
-                    Navigator.popUntil(context, (route) => route.isFirst);
+                      backgroundColor: Colors.green,
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+
+                  // Return to the screen before topup_screen with the top-up amount
+                  Future.delayed(Duration(seconds: 2), () {
+                    Navigator.of(context).pop();  // Pop ConfirmationScreen
+                    Navigator.of(context).pop(int.parse(nominal.replaceAll(RegExp(r'[^0-9]'), '')));  // Pop topup_screen with amount
                   });
                 },
-                child: Text('Konfirmasi'),
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 117, 0, 0),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    'Konfirmasi',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ),
-            
-            SizedBox(height: 32),
-
-            // Animasi Top-Up Berhasil menggunakan AnimatedOpacity
-            Center(
-              child: AnimatedOpacity(
-                opacity: _isSuccessVisible ? 1.0 : 0.0,
-                duration: Duration(seconds: 1),
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                      size: 100,
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'Top Up Berhasil!',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            SizedBox(height: 20),
           ],
         ),
       ),

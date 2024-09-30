@@ -73,6 +73,19 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
     });
   }
 
+  // Tambahkan method baru ini
+  void _navigateToTopUp() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TopupScreen()),
+    );
+    if (result != null && result is int) {
+      setState(() {
+        saldo[0] += result.toDouble(); // Menambahkan hasil top-up ke saldo
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = PageController();
@@ -206,13 +219,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TopupScreen()),
-                        );
-                      },
+                      onTap: _navigateToTopUp, // Ubah ini
                       child: Container(
                         height: 70,
                         padding: const EdgeInsets.all(13),

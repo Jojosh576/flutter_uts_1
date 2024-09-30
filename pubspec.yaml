@@ -72,6 +72,7 @@ flutter:
     - lib/icons/history.png
     - lib/icons/bill.png
     - lib/icons/topup.png
+    - lib/icons/topupb.png
     - lib/icons/request.png
   #   - images/a_dot_ham.jpeg
 

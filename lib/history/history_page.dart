@@ -17,7 +17,7 @@ class HistoryPage extends StatelessWidget {
             fontWeight: FontWeight.bold,  
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 121, 12, 12), 
+        backgroundColor: const Color.fromARGB(255, 117, 0, 0), 
       ),
       body: Container(
         color: const Color.fromARGB(255, 246, 234, 234),
@@ -28,6 +28,11 @@ class HistoryPage extends StatelessWidget {
             return Column(
               children: [
                 ListTile(
+                  leading: Image.asset(
+                    'lib/icons/topupb.png', // Path to your icon
+                    width: 40, // Adjust the width as needed
+                    height: 40, // Adjust the height as needed
+                  ),
                   title: Text(
                     transaction.title,
                     style: TextStyle(color: const Color.fromARGB(255, 9, 9, 9)),

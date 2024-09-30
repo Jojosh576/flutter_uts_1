@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
       body: _screens[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
-        color: const Color.fromARGB(255, 161, 42, 34),
+        color: const Color.fromARGB(255, 117, 0, 0),
         animationDuration: const Duration(milliseconds: 300),
         index: _currentIndex,
         items: const [
@@ -124,14 +124,14 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                     nokartu: 33312312,
                     expbulan: 12,
                     exptahun: 20,
-                    warna: Color.fromARGB(255, 161, 42, 34),
+                    warna: Color.fromARGB(255, 117, 0, 0),
                   ),
                   MyCard(
                     uang: saldo[1],
                     nokartu: 33312312,
                     expbulan: 12,
                     exptahun: 20,
-                    warna: Color.fromARGB(255, 161, 42, 34),
+                    warna: Color.fromARGB(255, 117, 0, 0),
                   ),
                 ],
               ),
@@ -176,7 +176,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                         height: 70,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 161, 42, 34),
+                            color: const Color.fromARGB(255, 117, 0, 0),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
@@ -217,7 +217,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                         height: 70,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 161, 42, 34),
+                            color: const Color.fromARGB(255, 117, 0, 0),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
@@ -257,7 +257,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                         height: 70,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 161, 42, 34),
+                            color: const Color.fromARGB(255, 117, 0, 0),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
@@ -303,7 +303,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                     child: Container(
                       padding: const EdgeInsets.all(13),
                       decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 161, 42, 34),
+                          color: const Color.fromARGB(255, 117, 0, 0),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
@@ -374,7 +374,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                     child: Container(
                       padding: const EdgeInsets.all(13),
                       decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 161, 42, 34),
+                          color: const Color.fromARGB(255, 117, 0, 0),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(

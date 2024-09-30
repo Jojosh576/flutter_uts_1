@@ -27,7 +27,7 @@ class _HomeScreenState extends State<TopupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 161, 42, 34),
+        backgroundColor: const Color.fromARGB(255, 117, 0, 0),
         title: Text(
           'Topup',
           style: TextStyle(color: Colors.white),

@@ -1,4 +1,3 @@
-// transaction.dart
 class Transaction {
   final String title;
   final String date;

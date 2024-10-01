@@ -209,7 +209,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       height: 10,
                     ),
                     Text(
-                      'Transfer',
+                      'Kirim',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -250,7 +250,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       height: 10,
                     ),
                     Text(
-                      'Topup',
+                      'Isi Ulang',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -290,7 +290,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       height: 10,
                     ),
                     Text(
-                      'Request',
+                      'Minta',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -414,7 +414,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'History',
+                                    'Riwayat',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
@@ -424,7 +424,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                                     height: 5,
                                   ),
                                   Text(
-                                    'Lihat History Transaksi',
+                                    'Lihat Riwayat Transaksi',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white),
                                   ),
@@ -453,7 +453,6 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
   }
 }
 
-// Dummy class untuk halaman QRScanner
 class QRScannerScreen extends StatelessWidget {
   const QRScannerScreen({super.key});
 
@@ -496,7 +495,6 @@ class QRScannerScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Tambahkan fungsi untuk menentukan jumlah di sini
               },
               child: Text('TENTUKAN JUMLAH'),
               style: ElevatedButton.styleFrom(

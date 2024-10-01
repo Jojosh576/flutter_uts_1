@@ -57,13 +57,13 @@ class loginScreen extends StatelessWidget {
   _header(context) {
     return Column(
       children: [
-        Image.asset('assets/image/lingpayred.png', // Ganti dengan path gambar logo Anda
-        height: 120, // Sesuaikan tinggi logo
+        Image.asset('assets/image/lingpayred.png',
+        height: 120,
       ),
         Padding(
           padding: const EdgeInsets.only(bottom: 24.0),
         child: Text(
-          "Silahkan masukkan Username dan Password Anda untuk masuk.",
+          "Selamat Datang, silahkan masukkan Nama dan Kata Sandi Anda untuk masuk.",
           textAlign: TextAlign.center,
           ),
         ),
@@ -78,7 +78,7 @@ class loginScreen extends StatelessWidget {
         TextField(
           controller: usernameController,
           decoration: InputDecoration(
-            hintText: "Username",
+            hintText: "Nama",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide.none,
@@ -92,7 +92,7 @@ class loginScreen extends StatelessWidget {
         TextField(
           controller: passwordController,
           decoration: InputDecoration(
-            hintText: "Password",
+            hintText: "Kata Sandi",
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide.none,
@@ -115,13 +115,13 @@ class loginScreen extends StatelessWidget {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text("Username atau Password salah!"),
+                  content: Text("Nama atau Kata Sandi salah!"),
                 ),
               );
             }
           },
           child: Text(
-            "Login",
+            "Masuk",
             style: TextStyle(fontSize: 20),
           ),
           style: ElevatedButton.styleFrom(
@@ -134,14 +134,14 @@ class loginScreen extends StatelessWidget {
   }
 
   _forgotPassword(context) {
-    return TextButton(onPressed: () {}, child: Text("Forgot password?"));
+    return TextButton(onPressed: () {}, child: Text("Lupa Kata Sandi?"));
   }
 
   _signup(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Don't have an account? "),
+        Text("Belum Punya Akun? "),
         TextButton(
           onPressed: () {
             Navigator.push(
@@ -149,7 +149,7 @@ class loginScreen extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const registScreen()),
             );
           },
-          child: Text("Sign Up"),
+          child: Text("Daftar"),
         ),
       ],
     );

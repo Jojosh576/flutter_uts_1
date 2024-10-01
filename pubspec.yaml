@@ -75,7 +75,10 @@ flutter:
     - lib/icons/bill.png
     - lib/icons/topup.png
     - lib/icons/topupb.png
+    - lib/icons/topup2.png
     - lib/icons/request.png
+    - lib/icons/send.png
+    - lib/icons/payment.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

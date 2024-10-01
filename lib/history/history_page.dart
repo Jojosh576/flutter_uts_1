@@ -1,10 +1,28 @@
-// history_page.dart
 import 'package:flutter/material.dart';
 import 'transaction.dart';
 import 'transaction_service.dart';
 
 class HistoryPage extends StatelessWidget {
   final List<Transaction> transactionHistory = getTransactionHistory();
+
+  String getIconForTransaction(String title) {
+    switch (title) {
+      case 'Pembelian Pulsa':
+        return 'lib/icons/payment.png';
+      case 'Pembayaran SKS':
+        return 'lib/icons/payment.png';
+      case 'Pembayaran BPP':
+        return 'lib/icons/payment.png';
+      case 'Transfer ke Rekening':
+        return 'lib/icons/send.png';
+      case 'Top Up e-Wallet':
+        return 'lib/icons/topup2.png';
+      case 'Transfer ke Bank ABC':
+        return 'lib/icons/send.png';
+      default:
+        return 'lib/icons/payment.png';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +46,16 @@ class HistoryPage extends StatelessWidget {
           itemCount: transactionHistory.length,
           itemBuilder: (context, index) {
             final transaction = transactionHistory[index];
+            
+            final iconPath = getIconForTransaction(transaction.title);
+            
             return Column(
               children: [
                 ListTile(
                   leading: Image.asset(
-                    'lib/icons/topupb.png', // Path to your icon
-                    width: 40, // Adjust the width as needed
-                    height: 40, // Adjust the height as needed
+                    iconPath, 
+                    width: 40, 
+                    height: 40, 
                   ),
                   title: Text(
                     transaction.title,
@@ -47,8 +68,12 @@ class HistoryPage extends StatelessWidget {
                   trailing: Text(
                     'Rp ${transaction.amount.toStringAsFixed(0)}',
                     style: TextStyle(
-                      color: transaction.amount < 0 ? Colors.red : Colors.green,
+                      color: (transaction.title.contains('Pembelian') || 
+                              transaction.title.contains('Pembayaran') || 
+                              transaction.title.contains('Transfer')) 
+                              ? Colors.red : Colors.green,
                       fontWeight: FontWeight.bold,
+                      fontSize: 15,
                     ),
                   ),
                 ),

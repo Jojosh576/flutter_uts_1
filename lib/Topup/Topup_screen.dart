@@ -11,13 +11,20 @@ class _TopupScreenState extends State<TopupScreen> {
   String _nominal = '';
   String _paymentInfo = '';
   final String _dummyVirtualAccount = '1234567890';
-  final List<String> _paymentMethods = ['Bank Transfer', 'Credit Card', 'Pulsa'];
+  final List<String> _paymentMethods = [
+    'Bank Transfer',
+    'Credit Card',
+    'Pulsa'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 117, 0, 0),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
         title: Text(
           'Topup',
           style: TextStyle(color: Colors.white),
@@ -42,7 +49,8 @@ class _TopupScreenState extends State<TopupScreen> {
                   _paymentInfo = '';
                 });
               },
-              items: _paymentMethods.map<DropdownMenuItem<String>>((String method) {
+              items: _paymentMethods
+                  .map<DropdownMenuItem<String>>((String method) {
                 return DropdownMenuItem<String>(
                   value: method,
                   child: Text(method),
@@ -50,7 +58,6 @@ class _TopupScreenState extends State<TopupScreen> {
               }).toList(),
             ),
             SizedBox(height: 20),
-
             if (_selectedMethod == 'Bank Transfer') ...[
               Text(
                 'Nomor Virtual Account Anda:',
@@ -115,7 +122,6 @@ class _TopupScreenState extends State<TopupScreen> {
               ),
             ],
             SizedBox(height: 20),
-
             if (_selectedMethod != 'Bank Transfer')
               ElevatedButton(
                 onPressed: () {
@@ -132,7 +138,8 @@ class _TopupScreenState extends State<TopupScreen> {
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Harap isi semua informasi yang diperlukan'),
+                        content:
+                            Text('Harap isi semua informasi yang diperlukan'),
                       ),
                     );
                   }

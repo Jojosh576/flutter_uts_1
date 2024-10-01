@@ -2,6 +2,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uts_1/Topup/Topup_screen.dart';
 import 'package:flutter_uts_1/history/history_page.dart';
+import 'package:flutter_uts_1/home/settings_page.dart';
+import 'package:flutter_uts_1/home/tagihan_page.dart';
 import 'package:flutter_uts_1/util/my_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -20,14 +22,15 @@ class _HomeState extends State<Home> {
   final PageController controller = PageController();
 
   final List<Widget> _screens = [
-    const HomeScreenContent(),
-    const QRScannerScreen(),
-    const SettingsScreen(),
+    HomeScreenContent(),
+    QRScannerScreen(),
+    SettingsPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _screens[_currentIndex],
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
@@ -50,7 +53,7 @@ class _HomeState extends State<Home> {
         ],
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Mengubah indeks saat item diklik
+            _currentIndex = index;
           });
         },
       ),
@@ -90,42 +93,42 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
   Widget build(BuildContext context) {
     final controller = PageController();
 
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 117, 0, 0),
+        automaticallyImplyLeading: false,
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
                 children: [
-                  const Row(
-                    children: [
-                      Text(
-                        'Ling',
-                        style: TextStyle(
-                            fontSize: 29, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Pay',
-                        style: TextStyle(fontSize: 29),
-                      ),
-                    ],
+                  Text(
+                    'Ling',
+                    style: TextStyle(
+                        fontSize: 29,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
-                  Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[400],
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(Icons.add)),
+                  Text(
+                    'Pay',
+                    style: TextStyle(fontSize: 29, color: Colors.white),
+                  ),
                 ],
               ),
-            ),
+            ],
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
             const SizedBox(
               height: 10,
             ),
-            //cards
+            // cards
             SizedBox(
               height: 200,
               child: PageView(
@@ -206,7 +209,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       height: 10,
                     ),
                     Text(
-                      'Kirim',
+                      'Transfer',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -219,9 +222,15 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: _navigateToTopUp, // Ubah ini
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TopupScreen()),
+                        );
+                      },
                       child: Container(
-                        height: 70,
+                        height: 60,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 117, 0, 0),
@@ -241,7 +250,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       height: 10,
                     ),
                     Text(
-                      'Isi Ulang',
+                      'Topup',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -250,18 +259,18 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                     ),
                   ],
                 ),
-                //Tagihan
+                // Request
                 Column(
                   children: [
                     InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const Home()),
+                          MaterialPageRoute(builder: (context) => Home()),
                         );
                       },
                       child: Container(
-                        height: 70,
+                        height: 60,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 117, 0, 0),
@@ -281,7 +290,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       height: 10,
                     ),
                     Text(
-                      'Minta',
+                      'Request',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -295,16 +304,16 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
             const SizedBox(
               height: 20,
             ),
-            //Tagihan
+            // Tagihan
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 45),
+              padding: const EdgeInsets.symmetric(horizontal: 55),
               child: Column(
                 children: [
                   InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Home()),
+                        MaterialPageRoute(builder: (context) => TagihanPage()),
                       );
                     },
                     child: Container(
@@ -324,7 +333,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                           Row(
                             children: [
                               SizedBox(
-                                height: 60,
+                                height: 50,
                                 child: Image.asset('lib/icons/bill.png'),
                               ),
                               const SizedBox(
@@ -337,7 +346,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                                     'Tagihan',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         color: Colors.white),
                                   ),
                                   SizedBox(
@@ -368,14 +377,14 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
             ),
             // History
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 45),
+              padding: const EdgeInsets.symmetric(horizontal: 55),
               child: Column(
                 children: [
                   InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>  HistoryPage()),
+                        MaterialPageRoute(builder: (context) => HistoryPage()),
                       );
                     },
                     child: Container(
@@ -395,7 +404,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                           Row(
                             children: [
                               SizedBox(
-                                height: 60,
+                                height: 50,
                                 child: Image.asset('lib/icons/history.png'),
                               ),
                               const SizedBox(
@@ -405,17 +414,17 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Riwayat',
+                                    'History',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         color: Colors.white),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Text(
-                                    'Lihat Riwayat Transaksi',
+                                    'Lihat History Transaksi',
                                     style: TextStyle(
                                         fontSize: 16, color: Colors.white),
                                   ),
@@ -431,7 +440,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   )
                 ],
@@ -452,18 +461,6 @@ class QRScannerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text("QR Code Scanner Page"),
-    );
-  }
-}
-
-// Dummy class untuk halaman Settings
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Settings Page"),
     );
   }
 }

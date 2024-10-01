@@ -1,7 +1,7 @@
 // history_page.dart
 import 'package:flutter/material.dart';
-import 'transaction.dart'; 
-import 'transaction_service.dart'; 
+import 'transaction.dart';
+import 'transaction_service.dart';
 
 class HistoryPage extends StatelessWidget {
   final List<Transaction> transactionHistory = getTransactionHistory();
@@ -10,14 +10,17 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
         title: const Text(
           'History Transaksi',
           style: TextStyle(
-            color: Colors.white,          
-            fontWeight: FontWeight.bold,  
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 117, 0, 0), 
+        backgroundColor: const Color.fromARGB(255, 117, 0, 0),
       ),
       body: Container(
         color: const Color.fromARGB(255, 246, 234, 234),
@@ -39,7 +42,7 @@ class HistoryPage extends StatelessWidget {
                   ),
                   subtitle: Text(
                     transaction.date,
-                    style: TextStyle(color: const Color.fromARGB(255, 3, 3, 3)), 
+                    style: TextStyle(color: const Color.fromARGB(255, 3, 3, 3)),
                   ),
                   trailing: Text(
                     'Rp ${transaction.amount.toStringAsFixed(0)}',
@@ -49,9 +52,9 @@ class HistoryPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Divider( 
-                  color: Colors.grey,  
-                  thickness: 1.0,    
+                const Divider(
+                  color: Colors.grey,
+                  thickness: 1.0,
                 ),
               ],
             );

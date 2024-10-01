@@ -32,7 +32,7 @@ class HistoryPage extends StatelessWidget {
           color: Colors.white,
         ),
         title: const Text(
-          'History Transaksi',
+          'Riwayat Transaksi',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,

@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomeState createState() => _HomeState();
 }
 
@@ -103,20 +102,9 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    'Ling',
-                    style: TextStyle(
-                        fontSize: 29,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                  Text(
-                    'Pay',
-                    style: TextStyle(fontSize: 29, color: Colors.white),
-                  ),
-                ],
+              Image(
+                image: AssetImage('assets/image/lingpayw.png'),
+                height: 40
               ),
             ],
           ),
@@ -230,7 +218,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                         );
                       },
                       child: Container(
-                        height: 60,
+                        height: 70,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 117, 0, 0),
@@ -270,7 +258,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                         );
                       },
                       child: Container(
-                        height: 60,
+                        height: 70,
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 117, 0, 0),
@@ -494,8 +482,7 @@ class QRScannerScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               child: Text('TENTUKAN JUMLAH'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 117, 0, 0),

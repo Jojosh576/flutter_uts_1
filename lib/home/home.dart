@@ -459,8 +459,54 @@ class QRScannerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("QR Code Scanner Page"),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 250,
+              height: 250,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  'assets/image/qr.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Image.asset(
+              'assets/image/qr_logo.png',
+              width: 100,
+              height: 50,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Tambahkan fungsi untuk menentukan jumlah di sini
+              },
+              child: Text('TENTUKAN JUMLAH'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 117, 0, 0),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

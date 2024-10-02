@@ -6,8 +6,8 @@ import 'package:flutter_uts_1/home/settings_page.dart';
 import 'package:flutter_uts_1/home/tagihan_page.dart';
 import 'package:flutter_uts_1/util/my_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '/send/send_money_screen.dart';
+import 'package:flutter_uts_1/send/send_money_screen.dart';
+import 'package:flutter_uts_1/request/request_money_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -102,10 +102,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image(
-                image: AssetImage('assets/image/lingpayw.png'),
-                height: 40
-              ),
+              Image(image: AssetImage('assets/image/lingpayw.png'), height: 40),
             ],
           ),
         ),
@@ -251,11 +248,18 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Home()),
-                        );
+                      onTap: () async {
+                        try {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  RequestMoneyScreen(saldo: saldo[0]),
+                            ),
+                          );
+                        } catch (e) {
+                          print('Error: $e');
+                        }
                       },
                       child: Container(
                         height: 70,
@@ -376,7 +380,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       );
                     },
                     child: Container(
-                      padding: const EdgeInsets.all(13),
+                      padding: const EdgeInsets.all(11),
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 117, 0, 0),
                           borderRadius: BorderRadius.circular(20),

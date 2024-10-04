@@ -69,45 +69,23 @@ class HomeScreenContent extends StatefulWidget {
 
 class _HomeScreenContentState extends State<HomeScreenContent> {
   final List<double> saldo = [150000000.00, 22990093.00];
-  void updateSaldo(int nominal) {
-    setState(() {
-      saldo[0] -= nominal;
-    });
-  }
 
-  // Tambahkan method baru ini
-  void _navigateToTopUp() async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => TopupScreen()),
-    );
-    if (result != null && result is int) {
-      setState(() {
-        saldo[0] += result.toDouble(); // Menambahkan hasil top-up ke saldo
-      });
-    }
+  void updateSaldo(int nominal, {bool isTopUp = false}) {
+    setState(() {
+      if (isTopUp) {
+        saldo[0] += nominal;
+      } else {
+        saldo[0] -= nominal;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = PageController();
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 117, 0, 0),
-        automaticallyImplyLeading: false,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image(image: AssetImage('assets/image/lingpayw.png'), height: 40),
-            ],
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
@@ -207,12 +185,17 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {
-                        Navigator.push(
+                      onTap: () async {
+                        final int? topUpAmount = await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TopupScreen()),
+                            builder: (context) => TopupScreen(),
+                          ),
                         );
+
+                        if (topUpAmount != null && topUpAmount > 0) {
+                          updateSaldo(topUpAmount, isTopUp: true);
+                        }
                       },
                       child: Container(
                         height: 70,

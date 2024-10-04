@@ -6,7 +6,8 @@ import 'package:flutter_uts_1/home/settings_page.dart';
 import 'package:flutter_uts_1/home/tagihan_page.dart';
 import 'package:flutter_uts_1/util/my_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '/send/send_money_screen.dart';
 
 class Home extends StatefulWidget {
@@ -441,57 +442,87 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
   }
 }
 
-class QRScannerScreen extends StatelessWidget {
+class QRScannerScreen extends StatefulWidget {
   const QRScannerScreen({super.key});
+
+  @override
+  State<QRScannerScreen> createState() => _QRScannerScreenState();
+}
+
+class _QRScannerScreenState extends State<QRScannerScreen> {
+  String result = '';
+  bool isScanning = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _startBarcodeScanner();
+    });
+  }
+
+  void _startBarcodeScanner() async {
+    var res = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SimpleBarcodeScannerPage(),
+      ),
+    );
+
+    if (res is String) {
+      setState(() {
+        result = res;
+        isScanning = false;
+      });
+      await _launchURL(result);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Home()),
+      );
+    } else {
+      setState(() {
+        isScanning = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Pemindaian dibatalkan')),
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Home()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Scan QR'),
+      ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 250,
-              height: 250,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  'assets/image/qr.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Image.asset(
-              'assets/image/qr_logo.png',
-              width: 100,
-              height: 50,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('TENTUKAN JUMLAH'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 117, 0, 0),
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-              ),
-            ),
-          ],
-        ),
+        child: isScanning
+            ? const CircularProgressIndicator()
+            : const Text("QR Scanner dibatalkan"),
       ),
     );
+  }
+
+  Future<void> _launchURL(String url) async {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://$url';
+    }
+
+    final Uri uri = Uri.parse(url);
+    try {
+      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Tidak dapat meluncurkan $url')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan: $e')),
+      );
+    }
   }
 }

@@ -6,14 +6,11 @@ import 'package:flutter_uts_1/home/settings_page.dart';
 import 'package:flutter_uts_1/home/tagihan_page.dart';
 import 'package:flutter_uts_1/util/my_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-<<<<<<< HEAD
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '/send/send_money_screen.dart';
-=======
 import 'package:flutter_uts_1/send/send_money_screen.dart';
 import 'package:flutter_uts_1/request/request_money_screen.dart';
->>>>>>> 183d9aa65e45a5c06fa430eab01733810092f6ee
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -498,7 +495,6 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       ),
     );
   }
-<<<<<<< HEAD
 
   Future<void> _launchURL(String url) async {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
@@ -518,6 +514,4 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       );
     }
   }
-=======
->>>>>>> 183d9aa65e45a5c06fa430eab01733810092f6ee
 }

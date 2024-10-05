@@ -6,9 +6,14 @@ import 'package:flutter_uts_1/home/settings_page.dart';
 import 'package:flutter_uts_1/home/tagihan_page.dart';
 import 'package:flutter_uts_1/util/my_card.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+<<<<<<< HEAD
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '/send/send_money_screen.dart';
+=======
+import 'package:flutter_uts_1/send/send_money_screen.dart';
+import 'package:flutter_uts_1/request/request_money_screen.dart';
+>>>>>>> 183d9aa65e45a5c06fa430eab01733810092f6ee
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -70,48 +75,23 @@ class HomeScreenContent extends StatefulWidget {
 
 class _HomeScreenContentState extends State<HomeScreenContent> {
   final List<double> saldo = [150000000.00, 22990093.00];
-  void updateSaldo(int nominal) {
-    setState(() {
-      saldo[0] -= nominal;
-    });
-  }
 
-  // Tambahkan method baru ini
-  void _navigateToTopUp() async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => TopupScreen()),
-    );
-    if (result != null && result is int) {
-      setState(() {
-        saldo[0] += result.toDouble(); // Menambahkan hasil top-up ke saldo
-      });
-    }
+  void updateSaldo(int nominal, {bool isTopUp = false}) {
+    setState(() {
+      if (isTopUp) {
+        saldo[0] += nominal;
+      } else {
+        saldo[0] -= nominal;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = PageController();
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 117, 0, 0),
-        automaticallyImplyLeading: false,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image(
-                image: AssetImage('assets/image/lingpayw.png'),
-                height: 40
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
@@ -211,12 +191,17 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {
-                        Navigator.push(
+                      onTap: () async {
+                        final int? topUpAmount = await Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TopupScreen()),
+                            builder: (context) => TopupScreen(),
+                          ),
                         );
+
+                        if (topUpAmount != null && topUpAmount > 0) {
+                          updateSaldo(topUpAmount, isTopUp: true);
+                        }
                       },
                       child: Container(
                         height: 70,
@@ -252,11 +237,18 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Home()),
-                        );
+                      onTap: () async {
+                        try {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  RequestMoneyScreen(saldo: saldo[0]),
+                            ),
+                          );
+                        } catch (e) {
+                          print('Error: $e');
+                        }
                       },
                       child: Container(
                         height: 70,
@@ -377,7 +369,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                       );
                     },
                     child: Container(
-                      padding: const EdgeInsets.all(13),
+                      padding: const EdgeInsets.all(11),
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 117, 0, 0),
                           borderRadius: BorderRadius.circular(20),
@@ -484,7 +476,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
         isScanning = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Pemindaian dibatalkan')),
+        const SnackBar(content: Text('Batalkan Pemindaian')),
       );
       Navigator.push(
         context,
@@ -506,6 +498,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       ),
     );
   }
+<<<<<<< HEAD
 
   Future<void> _launchURL(String url) async {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
@@ -525,4 +518,6 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       );
     }
   }
+=======
+>>>>>>> 183d9aa65e45a5c06fa430eab01733810092f6ee
 }

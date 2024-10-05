@@ -87,8 +87,21 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
   Widget build(BuildContext context) {
     final controller = PageController();
 
-    return SafeArea(
-      child: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 117, 0, 0),
+        automaticallyImplyLeading: false,
+        title: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image(image: AssetImage('assets/image/lingpayw.png'), height: 40),
+            ],
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(
@@ -458,7 +471,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       ),
     );
 
-    if (res is String) {
+    if (res is String && res.isNotEmpty && res != '-1') {
       setState(() {
         result = res;
         isScanning = false;
@@ -473,7 +486,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
         isScanning = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Batalkan Pemindaian')),
+        const SnackBar(content: Text('Scan dibatalkan')),
       );
       Navigator.push(
         context,

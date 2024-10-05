@@ -69,8 +69,8 @@ flutter:
     - assets/image/lingpayw.png
     - assets/image/warning.png
     - assets/image/qr_logo.png
-    - assets/image/qr.png
     - assets/image/qr_logo.png
+    - assets/image/qr.jpg
 
     - lib/icons/fund.png
     - lib/icons/history.png

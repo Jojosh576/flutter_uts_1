@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uts_1/home/home.dart';
-import 'send_money_transaction.dart';
+import 'request_money_transaction.dart';
 
-class SendMoneyScreen extends StatelessWidget {
+class RequestMoneyScreen extends StatelessWidget {
   final double saldo;
 
-  SendMoneyScreen({super.key, required this.saldo});
+  RequestMoneyScreen({super.key, required this.saldo});
 
   final List<String> profileImage = [
     "https://i.pinimg.com/236x/6e/a8/02/6ea802b32f53cda0bf7542059d174481.jpg",
@@ -16,18 +15,6 @@ class SendMoneyScreen extends StatelessWidget {
     "https://i.pinimg.com/236x/66/4d/21/664d21c6ba8b159769f23b25f2adc28a.jpg",
     "https://i.pinimg.com/474x/61/c4/58/61c458f08b883c02436f51f3c80bf328.jpg",
     "https://i.pinimg.com/474x/57/f9/83/57f98343940da0376fa81a2fa5417983.jpg"
-  ];
-
-  final List<String> sendImage = [
-    "https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group-64.png",
-    "https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/add_group-64.png",
-    "https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/bank-64.png",
-  ];
-
-  final List<String> sendDesc = [
-    "Kirim ke Teman",
-    "Kirim ke Grup",
-    "Kirim ke Bank",
   ];
 
   final List<String> names = [
@@ -43,11 +30,45 @@ class SendMoneyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showQRCode(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'SCAN HERE',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Image.asset(
+                    'assets/image/qr.jpg',
+                    width: 200,
+                    height: 200,
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    }
+
     return GestureDetector(
       child: Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
-          title: Text("Kirim Uang",
+          title: Text("Minta Uang",
               style: TextStyle(fontSize: 18, color: Colors.white)),
           backgroundColor: Color.fromARGB(255, 117, 0, 0),
           centerTitle: true,
@@ -80,7 +101,7 @@ class SendMoneyScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Kirim Cepat",
+                        "Minta Cepat",
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -124,7 +145,8 @@ class SendMoneyScreen extends StatelessWidget {
                                 final int? nominal = await Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SendMoneyTransaction(
+                                    builder: (context) =>
+                                        RequestMoneyTransaction(
                                       name: names[index],
                                       profileImage: profileImage[index],
                                       saldo: saldo,
@@ -167,79 +189,9 @@ class SendMoneyScreen extends StatelessWidget {
               Positioned(
                 top: 360,
                 left: 20,
-                bottom: 0,
-                child: SingleChildScrollView(
-                  controller: ScrollController(),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1.0,
-                        color: Colors.grey[400]!,
-                      ),
-                      borderRadius: BorderRadius.circular(9),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 1.2,
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 5,
-                              crossAxisSpacing: 5,
-                            ),
-                            itemCount: sendImage.length,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        width: 65,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image:
-                                                NetworkImage(sendImage[index]),
-                                            fit: BoxFit.cover,
-                                            alignment: Alignment.center,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(bottom: 8)),
-                                    Text(
-                                      sendDesc[index],
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 13),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 515,
-                left: 20,
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => QRScannerScreen()));
+                    _showQRCode(context);
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.9,
@@ -257,7 +209,7 @@ class SendMoneyScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Kirim uang secara langsung pakai",
+                          "Minta uang secara langsung pakai",
                           style:
                               TextStyle(color: Colors.grey[800], fontSize: 14),
                         ),

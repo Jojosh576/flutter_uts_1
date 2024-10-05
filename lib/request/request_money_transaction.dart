@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class SendMoneyTransaction extends StatefulWidget {
+class RequestMoneyTransaction extends StatefulWidget {
   final String name;
   final String profileImage;
   final double saldo;
 
-  SendMoneyTransaction({
+  RequestMoneyTransaction({
     required this.name,
     required this.profileImage,
     required this.saldo,
   });
 
   @override
-  _SendMoneyTransactionState createState() => _SendMoneyTransactionState();
+  _RequestMoneyTransactionState createState() =>
+      _RequestMoneyTransactionState();
 }
 
-class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
+class _RequestMoneyTransactionState extends State<RequestMoneyTransaction> {
   bool isChecked = false;
   TextEditingController _controller = TextEditingController();
   int? nominalTransfer;
@@ -46,12 +47,6 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
     });
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   void _konfirmasiTransfer() {
     if (nominalTransfer == null || nominalTransfer! <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -63,27 +58,7 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
               SizedBox(
                 width: 8,
               ),
-              Text("Nominal tidak boleh kosong")
-            ],
-          ),
-          backgroundColor: Colors.red,
-          duration: Duration(seconds: 2),
-        ),
-      );
-      return;
-    }
-
-    if (nominalTransfer! > widget.saldo) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image(image: AssetImage('lib/icons/cross.png')),
-              SizedBox(
-                width: 8,
-              ),
-              Text("Saldo tidak mencukupi")
+              Text("Nominal tidak boleh kosong"),
             ],
           ),
           backgroundColor: Colors.red,
@@ -105,7 +80,7 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
             SizedBox(
               width: 8,
             ),
-            Text("Transfer Berhasil")
+            Text("Permintaan Berhasil dikirim")
           ],
         ),
         backgroundColor: Colors.green,
@@ -122,7 +97,7 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
       child: Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.white),
-          title: Text("Kirim Uang ke ${widget.name}",
+          title: Text("Minta Uang ke ${widget.name}",
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -148,7 +123,7 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width * 0.9,
-                  height: 340,
+                  height: 270,
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 1.0,
@@ -231,7 +206,7 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
                       ),
                       TextField(
                         decoration: InputDecoration(
-                          hintText: "Tulis Catatan untuk Penerima",
+                          hintText: "Tulis Catatan untuk Pengirim",
                           hintStyle: TextStyle(fontSize: 13),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
@@ -245,49 +220,6 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
                               color: Colors.grey,
                             ),
                           ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: 370,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 0.8,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(padding: EdgeInsets.all(5)),
-                            Text(
-                              "Sembunyikan nama saya",
-                              style: TextStyle(
-                                  color: Colors.grey[800],
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Padding(padding: EdgeInsets.only(left: 125)),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  isChecked = !isChecked;
-                                });
-                              },
-                              child: Icon(
-                                isChecked
-                                    ? Icons.check_box
-                                    : Icons.check_box_outline_blank,
-                                color: isChecked
-                                    ? Color.fromARGB(255, 117, 0, 0)
-                                    : Colors.grey[700],
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ],
@@ -320,7 +252,7 @@ class _SendMoneyTransactionState extends State<SendMoneyTransaction> {
                             SizedBox(
                               width: 5,
                             ),
-                            Text("Cek ulang nama penerima dan nominal")
+                            Text("Cek ulang nama pengirim dan nominal")
                           ],
                         ),
                         Padding(padding: EdgeInsets.all(5)),

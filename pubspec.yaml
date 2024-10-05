@@ -50,6 +50,20 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.11.0
+  flutter_native_splash: ^2.2.12
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/image/applingpay.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/image/screenlingpay.png
+  android: true
+  ios: true
+  web: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,6 +85,9 @@ flutter:
     - assets/image/qr_logo.png
     - assets/image/qr_logo.png
     - assets/image/qr.jpg
+    - assets/image/lingpay3.jpg
+    - assets/image/applingpay.png
+    - assets/image/screenlingpay.png
 
     - lib/icons/fund.png
     - lib/icons/history.png

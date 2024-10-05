@@ -44,7 +44,7 @@ class RequestMoneyScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'SCAN HERE',
+                    'SCAN DISINI',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

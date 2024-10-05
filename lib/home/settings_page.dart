@@ -85,7 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.description,
               color: Color.fromARGB(255, 117, 0, 0),
             ),
-            title: Text('Terms & Conditions'),
+            title: Text('Syarat & Ketentuan'),
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           const Divider(),
@@ -94,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Icons.privacy_tip,
               color: Color.fromARGB(255, 117, 0, 0),
             ),
-            title: Text('Privacy Policy'),
+            title: Text('Kebijakan Privasi'),
             trailing: Icon(Icons.arrow_forward_ios),
           ),
           const SizedBox(
@@ -111,7 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 LogoutConfirmation(context);
               },
               child: const Text(
-                'LOGOUT',
+                'Keluar',
                 style: TextStyle(color: Colors.white),
               ),
             ),
@@ -146,7 +146,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             TextButton(
               child: const Text(
-                'OKE',
+                'Oke',
                 style: TextStyle(
                   fontSize: 20,
                   color: Color.fromARGB(255, 117, 0, 0),

@@ -35,7 +35,7 @@ class _registerPageState extends State<registerPage> {
   void _register() {
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registering...')),
+        const SnackBar(content: Text('Mendaftarkan...')),
       );
     }
   }
@@ -72,7 +72,7 @@ class _registerPageState extends State<registerPage> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20.0),
                         child: const Text(
-                          'Register',
+                          'Daftar',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30.0,
@@ -83,12 +83,12 @@ class _registerPageState extends State<registerPage> {
                       TextFormField(
                         controller: _nameController,
                         decoration: const InputDecoration(
-                          labelText: 'Name',
+                          labelText: 'Nama',
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your name';
+                            return 'Tolong masukkan nama Anda';
                           }
                           return null;
                         },
@@ -97,15 +97,15 @@ class _registerPageState extends State<registerPage> {
                       TextFormField(
                         controller: _passwordController,
                         decoration: const InputDecoration(
-                          labelText: 'Password',
+                          labelText: 'Kata Sandi',
                           border: OutlineInputBorder(),
                         ),
                         obscureText: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your password';
+                            return 'Tolong masukkan kata sandi Anda';
                           } else if (value.length < 6) {
-                            return 'Password must be at least 6 characters long';
+                            return 'Kata sandi harus minimal 6 karakter';
                           }
                           return null;
                         },
@@ -114,15 +114,15 @@ class _registerPageState extends State<registerPage> {
                       TextFormField(
                         controller: _retypePasswordController,
                         decoration: const InputDecoration(
-                          labelText: 'Retype Password',
+                          labelText: 'Ketik Ulang Kata Sandi',
                           border: OutlineInputBorder(),
                         ),
                         obscureText: true,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please retype your password';
+                            return 'Tolong masukkan ulang kata sandi Anda';
                           } else if (value != _passwordController.text) {
-                            return 'Passwords do not match';
+                            return 'Kata sandi tidak cocok';
                           }
                           return null;
                         },
@@ -131,14 +131,14 @@ class _registerPageState extends State<registerPage> {
                       TextFormField(
                         controller: _emailController,
                         decoration: const InputDecoration(
-                          labelText: 'Number',
+                          labelText: 'Nomor Handphone',
                           border: OutlineInputBorder(),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your number';
+                            return 'Tolong masukan nomor handphone Anda';
                           } else if (!RegExp(r'^08[0-9]+$').hasMatch(value)) {
-                            return 'Please enter a valid number';
+                            return 'Harap masukkan nomor yang valid';
                           }
                           return null;
                         },
@@ -146,7 +146,7 @@ class _registerPageState extends State<registerPage> {
                       const SizedBox(height: 35.0),
                       ElevatedButton(
                         onPressed: _register,
-                        child: const Text('Register'),
+                        child: const Text('Daftar'),
                       ),
                     ],
                   ),

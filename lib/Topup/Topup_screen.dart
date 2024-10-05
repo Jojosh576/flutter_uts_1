@@ -26,7 +26,7 @@ class _TopupScreenState extends State<TopupScreen> {
           color: Colors.white,
         ),
         title: Text(
-          'Topup',
+          'Isi Ulang',
           style: TextStyle(color: Colors.white),
         ),
       ),
